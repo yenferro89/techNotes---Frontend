@@ -8,14 +8,18 @@ const UsersList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery();
+  } = useGetUsersQuery(undefined, {
+    pollingInterval: 60000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   let content;
 
   if (isLoading) content = <p>Loading...</p>;
 
   if (isError) {
-    content = <p className="">{error?.data?.message}</p>;
+    content = <p className="errmsg">{error?.data?.message}</p>;
   }
 
   if (isSuccess) {
@@ -26,16 +30,16 @@ const UsersList = () => {
       : null;
 
     content = (
-      <table className="">
-        <thead className="">
+      <table className="table table--users">
+        <thead className="table__thead">
           <tr>
-            <th scope="col" className="">
+            <th scope="col" className="table__th user__username">
               Username
             </th>
-            <th scope="col" className="">
+            <th scope="col" className="table__th user__roles">
               Roles
             </th>
-            <th scope="col" className="">
+            <th scope="col" className="table__th user__edit">
               Edit
             </th>
           </tr>
