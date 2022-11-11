@@ -43,7 +43,7 @@ const DashHeader = () => {
     <header className="">
       <div className={`${dashClass}`}>
         <Link to="/dash">
-          <h1 className="">techNotes</h1>
+          <h1 className="">Tech Tickets</h1>
         </Link>
         <nav className="">
           {/* add more buttons later */}

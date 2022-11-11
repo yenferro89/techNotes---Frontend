@@ -5,25 +5,25 @@ const Public = () => {
     <section className="public">
       <header>
         <h1>
-          Welcome to <span className="nowrap">Dan D. Repairs!</span>
+          Welcome to <span className="nowrap">my Tech Company!</span>
         </h1>
       </header>
       <main className="public__main">
         <p>
-          Located in Beautiful Downtown Foo City, Dan D. Repairs provides a
-          trained staff ready to meet your tech repair needs.
+          Located in Beautiful Downtown Miami, Tech Co. is  
+          trained and ready to meet your tech needs.
         </p>
         <address className="public__addr">
-          Dan D. Repairs
+          Tech Co.
           <br />
-          555 Foo Drive
+          800 Brickell Ave
           <br />
-          Foo City, CA 12345
+          Miami, FL
           <br />
           <a href="tel:+15555555555">(555) 555-5555</a>
         </address>
         <br />
-        <p>Owner: Dan Davidson</p>
+        <p>Owner: Yen Ferro</p>
       </main>
       <footer>
         <Link to="/login">Employee Login</Link>
