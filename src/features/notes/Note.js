@@ -1,12 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-
-import { useSelector } from "react-redux";
-import { selectNoteById } from "./notesApiSlice";
+import { useGetNotesQuery } from "./notesApiSlice";
+import { memo } from "react";
 
 const Note = ({ noteId }) => {
-  const note = useSelector((state) => selectNoteById(state, noteId));
+  const { note } = useGetNotesQuery("notesList", {
+    selectFromResult: ({ data }) => ({
+      note: data?.entities[noteId],
+    }),
+  });
 
   const navigate = useNavigate();
 
@@ -24,21 +27,21 @@ const Note = ({ noteId }) => {
     const handleEdit = () => navigate(`/dash/notes/${noteId}`);
 
     return (
-      <tr className="">
-        <td className="">
+      <tr className="table__row">
+        <td className="table__cell note__status">
           {note.completed ? (
-            <span className="">Completed</span>
+            <span className="note__status--completed">Completed</span>
           ) : (
-            <span className="">Open</span>
+            <span className="note__status--open">Open</span>
           )}
         </td>
-        <td className="">{created}</td>
-        <td className="">{updated}</td>
-        <td className="">{note.title}</td>
-        <td className="">{note.username}</td>
+        <td className="table__cell note__created">{created}</td>
+        <td className="table__cell note__updated">{updated}</td>
+        <td className="table__cell note__title">{note.title}</td>
+        <td className="table__cell note__username">{note.username}</td>
 
-        <td className="">
-          <button className="" onClick={handleEdit}>
+        <td className="table__cell">
+          <button className="icon-button table__button" onClick={handleEdit}>
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>
         </td>
@@ -46,4 +49,7 @@ const Note = ({ noteId }) => {
     );
   } else return null;
 };
-export default Note;
+
+const memoizedNote = memo(Note);
+
+export default memoizedNote;
